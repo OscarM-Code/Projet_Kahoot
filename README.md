@@ -1,2 +1,2 @@
 # Projet_Kahoot
-Projet ou l'on dois recréer un site internet de type kahoot
+Projet ou l'on doit recréer un site internet de type kahoot
