@@ -1,9 +1,11 @@
-<?php 
+<?php
 session_start();
 include "connexion.php";
-include "reset.php"
-
+include "reset.php";
 ?>
+
+  
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,24 +21,18 @@ include "reset.php"
 
 
 
-<div id="current_que"></div>
-<h2>/</h2>
+  <div id="current_que"></div>
+  <p>/</p>
   <div id="total_que"></div>
   <div id="load_questions"></div>
+  <div class="tableau-scores"></div>
+  <div class="timer"></div>
 
 
-    <button class="btn btn-previous">previous</button>
-    <button class="btn btn-next">next</button>
-    <!-- <input class="btn" type="button" value="Next" onclick="load_next();" /> -->
+    <button class="btn previous-btn">previous</button>
+    <button class="btn next-btn">next</button>
+    <button class="btn tableau-scores-btn">tableau scores</button>
+    <button class="btn remove-tableau-scores-btn">remove tableau scores</button>
     <script src="app.js"></script>
-
-    <?php 
-    
-        //  $stmt = $pdo->query("SELECT * FROM mensonges WHERE id = 1");
-        // $post = $stmt->fetch();
-        // $answer = $post->mensonge;
-        // echo $answer;
-    
-    ?>
   </body>
 </html>

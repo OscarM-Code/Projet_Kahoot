@@ -43,11 +43,48 @@ function loadNext() {
   loadQuestions(questionno);
 }
 
-const btnPrevious = document.querySelector(".btn-previous");
-btnPrevious.addEventListener("click", loadPrevious);
+function loadTableauScores() {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function () {
+    if (this.status == 200) {
+      document.querySelector(".tableau-scores").innerHTML = xhr.responseText;
+    }
+  };
+  xhr.open("GET", "result.php", true);
+  xhr.send();
+}
 
-const btnNext = document.querySelector(".btn-next");
-btnNext.addEventListener("click", loadNext);
+function deleteTableauScores() {
+  document.querySelector(".tableau-scores-p").remove();
+}
+
+document
+  .querySelector(".remove-tableau-scores-btn")
+  .addEventListener("click", deleteTableauScores);
+
+document.querySelector(".previous-btn").addEventListener("click", loadPrevious);
+
+document.querySelector(".next-btn").addEventListener("click", loadNext);
+
+document
+  .querySelector(".tableau-scores-btn")
+  .addEventListener("click", loadTableauScores);
+
+// TIMER
+
+var counter = 0;
+var timeleft = 3;
+
+var myVar = setInterval(myTimer, 1000);
+
+function myTimer() {
+  counter++;
+  document.querySelector(".timer").innerHTML = timeleft - counter;
+  if (counter == timeleft) {
+    clearInterval(myVar);
+    loadTableauScores();
+  }
+}
 
 function radioClick(radiovalue, questionno) {
   var xhr = new XMLHttpRequest();
