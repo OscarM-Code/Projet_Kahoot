@@ -32,21 +32,23 @@ $count = $stmt->rowCount();
 
 $wrong = $count - $correct;
 
-?>
-
-
-<p class="tableau-scores-p">
-    <?php
-        echo "correct " . $correct;
-    ?>
-</p>
-
-<?php
 // echo "wrong " . $wrong;
 
 //   $stmt = $pdo->prepare("INSERT INTO kahoot_results(id, nom, total_question, correct_answer, wrong_answer) VALUES(:id, :nom, :total_question, :correct_answer, :wrong_answer)");
 //   $stmt->execute(['id' => NULL, 'nom' => '', 'total_question' => $count, 'correct_answer' => $correct, 'wrong_answer' => $wrong]);
 //   echo 'Post Added';
-
 ?>
-
+      <nav class="nav">
+        <h2>Tableau des scores</h2>
+      </nav>
+      <header class="header">
+        <h1>Grahoot!</h1>
+      </header>
+      <section class="tableau-scores-section">
+        <article class="tableau-score-article">
+            <h4>1</h4>
+            <h5>USER</h5>
+            <p class="score">
+            <?php echo $correct; ?>
+            </p>
+      </section>

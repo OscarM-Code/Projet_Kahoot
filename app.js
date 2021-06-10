@@ -1,28 +1,15 @@
-function load_total_que() {
-  var xhr = new XMLHttpRequest();
-  xhr.onload = function () {
-    if (this.status == 200) {
-      document.getElementById("total_que").innerHTML = this.responseText;
-    }
-  };
-  xhr.open("GET", "load_total_que.php", true);
-  xhr.send();
-}
-
 var questionno = "1";
 loadQuestions(questionno);
 
 function loadQuestions(questionno) {
-  document.getElementById("current_que").innerHTML = questionno;
   var xhr = new XMLHttpRequest();
   xhr.onload = function () {
     if (this.status == 200) {
       // HARDCODE !!!
       if (questionno == 15) {
-        window.location = "result.php";
+        window.location = "podium.php";
       } else {
         document.getElementById("load_questions").innerHTML = xhr.responseText;
-        load_total_que();
       }
     }
   };
@@ -30,14 +17,6 @@ function loadQuestions(questionno) {
   xhr.send();
 }
 
-function loadPrevious() {
-  if (questionno == "1") {
-    loadQuestions(questionno);
-  } else {
-    questionno = eval(questionno) - 1;
-    loadQuestions(questionno);
-  }
-}
 function loadNext() {
   questionno = eval(questionno) + 1;
   loadQuestions(questionno);
@@ -47,44 +26,51 @@ function loadTableauScores() {
   var xhr = new XMLHttpRequest();
   xhr.onload = function () {
     if (this.status == 200) {
+      document.getElementById("load_questions").textContent = "";
       document.querySelector(".tableau-scores").innerHTML = xhr.responseText;
     }
   };
   xhr.open("GET", "result.php", true);
   xhr.send();
 }
+const tableauScoresBtn = document.querySelector(".tableau-scores-btn");
+const nextBtn = document.querySelector(".next-btn");
 
-function deleteTableauScores() {
-  document.querySelector(".tableau-scores-p").remove();
-}
-
-document
-  .querySelector(".remove-tableau-scores-btn")
-  .addEventListener("click", deleteTableauScores);
-
-document.querySelector(".previous-btn").addEventListener("click", loadPrevious);
-
-document.querySelector(".next-btn").addEventListener("click", loadNext);
-
-document
-  .querySelector(".tableau-scores-btn")
-  .addEventListener("click", loadTableauScores);
+tableauScoresBtn.addEventListener("click", function () {
+  document.body.classList.add("background-bleu");
+  loadTableauScores();
+  tableauScoresBtn.classList.add("display-none");
+  nextBtn.classList.remove("display-none");
+});
 
 // TIMER
 
 var counter = 0;
-var timeleft = 3;
-
-var myVar = setInterval(myTimer, 1000);
+var timeleft = 5;
 
 function myTimer() {
   counter++;
-  document.querySelector(".timer").innerHTML = timeleft - counter;
+  document.querySelector(".timer-article").innerHTML = `<h2>${
+    timeleft - counter
+  }</h2>`;
   if (counter == timeleft) {
-    clearInterval(myVar);
-    loadTableauScores();
+    clearInterval(timeoutHandle);
+    counter = 0;
+    tableauScoresBtn.classList.remove("display-none");
   }
 }
+var timeoutHandle = window.setInterval(myTimer, 1000);
+
+nextBtn.addEventListener("click", function () {
+  document.querySelector(".tableau-scores").textContent = "";
+  document.body.classList.remove("background-bleu");
+  loadNext();
+  nextBtn.classList.add("display-none");
+  window.clearInterval(timeoutHandle);
+  timeoutHandle = window.setInterval(myTimer, 1000);
+});
+
+// RADIOCLICK
 
 function radioClick(radiovalue, questionno) {
   var xhr = new XMLHttpRequest();
