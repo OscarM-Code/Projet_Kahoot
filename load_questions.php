@@ -64,33 +64,26 @@ shuffle($reponses);
           </h2>
         </article>
       </section>
-<section class="reponses-section">
+<section class="reponses-section" 
+data-reponserouge="<?php echo $reponses[0]; ?>" 
+data-reponsebleu="<?php echo $reponses[1]; ?>"
+data-reponsejaune="<?php echo $reponses[2]; ?>"
+data-reponsevert="<?php echo $reponses[3]; ?>"
+data-mensonge="<?php echo $opt4; ?>">
         <article class="reponse-article rouge">
-          <input type="radio" name="reponse" value="<?php echo $reponses[0]; ?>" onclick="radioClick(this.value,<?php echo $question_no; ?>)"
-<?php if ($ans == $reponses[0]) {
-    echo "checked";
-} ?>>
+          <input type="radio" name="reponse" value="<?php echo $reponses[0]; ?>" onclick="radioClick(this.value,<?php echo $question_no; ?>)">
 <label> <?php echo $reponses[0]; ?></label>
         </article>
         <article class="reponse-article bleu">
-         <input type="radio" name="reponse" value="<?php echo $reponses[1]; ?>" onclick="radioClick(this.value,<?php echo $question_no; ?>)"
-<?php if ($ans == $reponses[1]) {
-    echo "checked";
-} ?>>
+         <input type="radio" name="reponse" value="<?php echo $reponses[1]; ?>" onclick="radioClick(this.value,<?php echo $question_no; ?>)">
 <label> <?php echo $reponses[1]; ?></label>
         </article>
         <article class="reponse-article jaune">
-          <input type="radio" name="reponse" value="<?php echo $reponses[2]; ?>" onclick="radioClick(this.value,<?php echo $question_no; ?>)"
-<?php if ($ans == $reponses[2]) {
-    echo "checked";
-} ?>>
+          <input type="radio" name="reponse" value="<?php echo $reponses[2]; ?>" onclick="radioClick(this.value,<?php echo $question_no; ?>)">
 <label> <?php echo $reponses[2]; ?></label>
         </article>
         <article class="reponse-article vert">
-          <input type="radio" name="reponse" value="<?php echo $reponses[3]; ?>" onclick="radioClick(this.value,<?php echo $question_no; ?>)"
-<?php if ($ans == $reponses[3]) {
-    echo "checked";
-} ?>>
+          <input type="radio" name="reponse" value="<?php echo $reponses[3]; ?>"  onclick="radioClick(this.value,<?php echo $question_no; ?>)">
 <label> <?php echo $reponses[3]; ?></label>
 
         </article>
@@ -106,3 +99,8 @@ shuffle($reponses);
             </p> -->
         </section>
       </footer>
+
+      <script>
+    var data = <?php echo json_encode("42", JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
+    console.log(data);
+        </script>

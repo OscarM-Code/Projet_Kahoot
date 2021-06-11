@@ -46,7 +46,7 @@ tableauScoresBtn.addEventListener("click", function () {
 // TIMER
 
 var counter = 0;
-var timeleft = 5;
+var timeleft = 3;
 
 function myTimer() {
   counter++;
@@ -57,6 +57,24 @@ function myTimer() {
     clearInterval(timeoutHandle);
     counter = 0;
     tableauScoresBtn.classList.remove("display-none");
+    document
+      .querySelectorAll('input[type="radio"]')
+      .forEach(function (reponse) {
+        reponse.classList.add("visibility-hidden");
+      });
+    const reponses = document.querySelector(".reponses-section");
+    if (reponses.dataset.mensonge !== reponses.dataset.reponserouge) {
+      document.querySelector(".rouge").style.background = "#c4c4c4";
+    }
+    if (reponses.dataset.mensonge !== reponses.dataset.reponsebleu) {
+      document.querySelector(".bleu").style.background = "#c4c4c4";
+    }
+    if (reponses.dataset.mensonge !== reponses.dataset.reponsejaune) {
+      document.querySelector(".jaune").style.background = "#c4c4c4";
+    }
+    if (reponses.dataset.mensonge !== reponses.dataset.reponsevert) {
+      document.querySelector(".vert").style.background = "#c4c4c4";
+    }
   }
 }
 var timeoutHandle = window.setInterval(myTimer, 1000);

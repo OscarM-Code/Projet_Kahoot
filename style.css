@@ -47,6 +47,10 @@ a:active {
   display: none;
 }
 
+.visibility-hidden {
+  visibility: hidden;
+}
+
 /*------------------------------------------- QUIZ */
 
 .header {
@@ -100,7 +104,7 @@ a:active {
 
 input[type="radio"] {
   position: absolute;
-  opacity: 0;
+  opacity: 0.05;
   width: 90%;
   height: 90%;
   top: 50%;
