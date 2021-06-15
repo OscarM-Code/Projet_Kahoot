@@ -2,26 +2,16 @@
 session_start();
 include "connexion.php";
 
-$question_no = "";
-$question = "";
-$opt1 = ";";
-$opt2 = ";";
-$opt3 = ";";
-$opt4 = ";";
-$answer = "";
-$count = 0;
-$ans = "";
+$stmt = $pdo->prepare(
+    "SELECT * FROM `kahoot_results` ORDER BY id DESC LIMIT 1"
+);
+$stmt->execute();
+$post = $stmt->fetch();
+$pseudo = $post->nom;
 
-$total_que = 0;
 $stmt = $pdo->prepare("SELECT * FROM verites_mensonge");
 $stmt->execute();
 $total_que = $stmt->rowCount();
-
-$queno = $_GET["questionno"];
-
-if (isset($_SESSION["answer"][$queno])) {
-    $ans = $_SESSION["answer"][$queno];
-}
 
 $stmt = $pdo->prepare(
     "SELECT * FROM verites_mensonge WHERE id=$_GET[questionno]"
@@ -35,7 +25,6 @@ if ($count == 0) {
     $post = $stmt->fetch();
     $question_no = $post->id;
     $question = $post->nom;
-
     $opt1 = $post->verite_1;
     $opt2 = $post->verite_2;
     $opt3 = $post->verite_3;
@@ -43,7 +32,6 @@ if ($count == 0) {
 }
 
 $reponses = [$opt1, $opt2, $opt3, $opt4];
-
 shuffle($reponses);
 ?>
      
@@ -65,42 +53,39 @@ shuffle($reponses);
         </article>
       </section>
 <section class="reponses-section" 
-data-reponserouge="<?php echo $reponses[0]; ?>" 
-data-reponsebleu="<?php echo $reponses[1]; ?>"
-data-reponsejaune="<?php echo $reponses[2]; ?>"
-data-reponsevert="<?php echo $reponses[3]; ?>"
+data-reponse0="<?php echo $reponses[0]; ?>" 
+data-reponse1="<?php echo $reponses[1]; ?>"
+data-reponse2="<?php echo $reponses[2]; ?>"
+data-reponse3="<?php echo $reponses[3]; ?>"
 data-mensonge="<?php echo $opt4; ?>">
         <article class="reponse-article rouge">
-          <input type="radio" name="reponse" value="<?php echo $reponses[0]; ?>" onclick="radioClick(this.value,<?php echo $question_no; ?>)">
+          <input type="radio" id="rep0" name="reponse" value="<?php echo $reponses[0]; ?>">
 <label> <?php echo $reponses[0]; ?></label>
         </article>
         <article class="reponse-article bleu">
-         <input type="radio" name="reponse" value="<?php echo $reponses[1]; ?>" onclick="radioClick(this.value,<?php echo $question_no; ?>)">
+         <input type="radio" id="rep1" name="reponse" value="<?php echo $reponses[1]; ?>">
 <label> <?php echo $reponses[1]; ?></label>
         </article>
         <article class="reponse-article jaune">
-          <input type="radio" name="reponse" value="<?php echo $reponses[2]; ?>" onclick="radioClick(this.value,<?php echo $question_no; ?>)">
+          <input type="radio" id="rep2" name="reponse" value="<?php echo $reponses[2]; ?>">
 <label> <?php echo $reponses[2]; ?></label>
         </article>
         <article class="reponse-article vert">
-          <input type="radio" name="reponse" value="<?php echo $reponses[3]; ?>"  onclick="radioClick(this.value,<?php echo $question_no; ?>)">
+          <input type="radio" id="rep3" name="reponse" value="<?php echo $reponses[3]; ?>">
 <label> <?php echo $reponses[3]; ?></label>
+
 
         </article>
 </section>
         <footer>
         <section class="footer-section">
           <h5 class="user">
-              BOB
+            <?php echo $pseudo; ?>
           </h5>
-          <!-- <h4>Score:</h4>
+          <h4>Score:</h4>
           <p class="score">
-
-            </p> -->
+         
+            </p>
         </section>
       </footer>
 
-      <script>
-    var data = <?php echo json_encode("42", JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
-    console.log(data);
-        </script>
