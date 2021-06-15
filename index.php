@@ -1,6 +1,6 @@
 <?php
-include "reset.php";
-include "connexion.php";
+include "php/reset.php";
+include "php/connexion.php";
 ?>
 
 <!DOCTYPE html>
@@ -28,8 +28,8 @@ include "connexion.php";
           />
           <button class="pin-btn">Valider</button>
         </section>
+        <script src="js/pin.js"></script>
       </div>
-        <script type="module" src="pin.js"></script>
     </main>
   </body>
 </html>

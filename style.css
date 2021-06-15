@@ -262,3 +262,11 @@ footer {
   font-weight: 600;
   cursor: pointer;
 }
+
+.gg-section {
+  width: 90vw;
+  margin: 10rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

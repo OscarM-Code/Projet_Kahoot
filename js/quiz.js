@@ -1,5 +1,4 @@
-// BOUTON SCORE
-
+/*------------------------------------------- BOUTON SCORE */
 var tableauScoresBtn = document.querySelector(".tableau-scores-btn");
 var nextBtn = document.querySelector(".next-btn");
 
@@ -10,7 +9,7 @@ tableauScoresBtn.addEventListener("click", function () {
   nextBtn.classList.remove("display-none");
 });
 
-// AJAX SCORE
+/*------------------------------------------- AJAX TABLEAU SCORES */
 
 function loadTableauScores() {
   var xhr = new XMLHttpRequest();
@@ -21,11 +20,11 @@ function loadTableauScores() {
       document.querySelector(".score").innerHTML = `${score}`;
     }
   };
-  xhr.open("GET", "result.php", true);
+  xhr.open("GET", "../php/result.php", true);
   xhr.send();
 }
 
-// TIMER
+/*------------------------------------------- TIMER */
 
 var counter = 0;
 var timeleft = 3;
@@ -46,7 +45,7 @@ function myTimer() {
         reponse.classList.add("visibility-hidden");
       });
 
-    // AFFICHER LA BONNE REPONSE
+    /*------------------------------------------- AFFICHER BONNE REPONSE*/
     var reponses = document.querySelector(".reponses-section");
     if (reponses.dataset.mensonge !== reponses.dataset.reponse0) {
       document.querySelector(".rouge").style.background = "#c4c4c4";
@@ -61,7 +60,7 @@ function myTimer() {
       document.querySelector(".vert").style.background = "#c4c4c4";
     }
 
-    // DONNER UN POINT
+    /*------------------------------------------- DONNER UN POINT */
     var rep0 = document.querySelector("#rep0");
     var rep1 = document.querySelector("#rep1");
     var rep2 = document.querySelector("#rep2");
@@ -90,14 +89,13 @@ function myTimer() {
     ) {
       score += 1;
     }
-    console.log(score);
     document.querySelector(".score").innerHTML = `${score}`;
   }
 }
 
 var timeoutHandle = window.setInterval(myTimer, 1000);
 
-// BOUTON QUESTION SUIVANTE
+/*------------------------------------------- BOUTON QUESTION SUIVANTE */
 function loadNext() {
   questionno = eval(questionno) + 1;
   loadQuestions(questionno);
@@ -112,7 +110,7 @@ nextBtn.addEventListener("click", function () {
   timeoutHandle = window.setInterval(myTimer, 1000);
 });
 
-// AJAX QUESTION SUIVANTE
+/*------------------------------------------- AJAX QUESTION SUIVANTE */
 var questionno = "1";
 loadQuestions(questionno);
 
@@ -122,12 +120,13 @@ function loadQuestions(questionno) {
     if (this.status == 200) {
       // HARDCODE !!!
       if (questionno == 15) {
-        window.location = "podium.php";
+        window.location = "../php/podium.php";
+        document.querySelector(".score").innerHTML = `${score}`;
       } else {
         document.querySelector(".load_questions").innerHTML = xhr.responseText;
       }
     }
   };
-  xhr.open("GET", "load_questions.php?questionno=" + questionno, true);
+  xhr.open("GET", "../php/load_questions.php?questionno=" + questionno, true);
   xhr.send();
 }
