@@ -19,10 +19,8 @@ $total_que = $stmt->rowCount();
 
 /*------------------------------------------- QUESTION ACTUELLE */
 
-$stmt = $pdo->prepare(
-    "SELECT * FROM verites_mensonge WHERE id=$_GET[questionno]"
-);
-$stmt->execute();
+$stmt = $pdo->prepare("SELECT * FROM verites_mensonge WHERE id=:id");
+$stmt->execute(["id" => $_GET["questionno"]]);
 $count = $stmt->rowCount();
 
 $post = $stmt->fetch();
@@ -92,4 +90,5 @@ shuffle($reponses);
           </p>
         </section>
       </footer>
+
 

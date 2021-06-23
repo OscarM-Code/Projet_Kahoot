@@ -27,7 +27,7 @@ function loadTableauScores() {
 /*------------------------------------------- TIMER */
 
 var counter = 0;
-var timeleft = 3;
+var timeleft = 6;
 var score = 0;
 
 function myTimer() {
@@ -35,6 +35,7 @@ function myTimer() {
   document.querySelector(".timer-article").innerHTML = `<h2>${
     timeleft - counter
   }</h2>`;
+
   if (counter == timeleft) {
     clearInterval(timeoutHandle);
     counter = 0;
@@ -115,18 +116,18 @@ var questionno = "1";
 loadQuestions(questionno);
 
 function loadQuestions(questionno) {
-  var xhr = new XMLHttpRequest();
-  xhr.onload = function () {
-    if (this.status == 200) {
-      // HARDCODE !!!
-      if (questionno == 15) {
-        window.location = "../php/podium.php";
-        document.querySelector(".score").innerHTML = `${score}`;
-      } else {
-        document.querySelector(".load_questions").innerHTML = xhr.responseText;
-      }
+  $(document).ready(function () {
+    if (questionno == 15) {
+      window.location = "../php/podium.php";
+      document.querySelector(".score").innerHTML = `${score}`;
+    } else {
+      $.ajax({
+        success: function () {
+          $(".load_questions").load(
+            "../php/load_questions.php?questionno=" + questionno
+          );
+        },
+      });
     }
-  };
-  xhr.open("GET", "../php/load_questions.php?questionno=" + questionno, true);
-  xhr.send();
+  });
 }

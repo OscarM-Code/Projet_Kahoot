@@ -156,13 +156,18 @@ input[type="number"] {
 
 input[type="radio"] {
   position: absolute;
-  opacity: 0.05;
+  opacity: 0;
   width: 90%;
   height: 90%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+}
+
+input[type="radio"]:checked + label {
+  color: white;
+  text-decoration: underline;
 }
 
 label {
@@ -188,18 +193,14 @@ label {
 }
 
 footer {
-  background: rgba(54, 65, 104, 1);
-  color: white;
-  position: absolute;
-  bottom: 0;
+  margin-top: 2rem;
+  color: rgba(54, 65, 104, 1);
   width: 100%;
 }
 
 .footer-section {
   width: 90vw;
   height: 4rem;
-  margin: 0 auto;
-  bottom: 0;
   display: grid;
   grid-template-columns: 50% 25% 25%;
   justify-items: center;
@@ -269,4 +270,18 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .reponse-article {
+    font-size: 1.5rem;
+  }
+
+  .tableau-scores-section {
+    font-size: 1.75rem;
+  }
+
+  body {
+    font-size: 1.5rem;
+  }
 }
