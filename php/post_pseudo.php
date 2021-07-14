@@ -1,6 +1,8 @@
 <?php
 include "connexion.php";
+session_start();
 
+// ENVOI DU PSEUDO DANS DATABASE
 if (isset($_POST["pseudo"])) {
     $pseudo = $_POST["pseudo"];
     $stmt = $pdo->prepare(
@@ -13,7 +15,6 @@ if (isset($_POST["pseudo"])) {
         "correct_answer" => "",
         "wrong_answer" => "",
     ]);
-    echo $result = 1;
+    $_SESSION["pseudo"] = $_POST["pseudo"];
 }
-
 ?>

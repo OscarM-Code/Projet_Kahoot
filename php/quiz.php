@@ -1,7 +1,12 @@
 <?php
-session_start();
 include "connexion.php";
-include "reset.php";
+session_start();
+
+// NE PEUX PAS ALLER SUR LE QUIZ SANS PSEUDO
+if (isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != "") {
+} else {
+    header("location:../../projet_grahoot");
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,13 +19,17 @@ include "reset.php";
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
-    <div class="load_questions"></div>
-    <div class="tableau-scores"></div>
-        <section class="btn-section">
+    <div class="load-questions" style="display: none;"></div>
+    <div class="tableau-scores" style="display: none;"></div>
+    <section class="btn-section">
       <button class="btn tableau-scores-btn display-none">Tableau des scores</button>
       <button class="btn next-btn display-none">Suivant</button>
-  </section>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="../js/quiz.js"></script>
+    </section>
+<!------------------------------------------- Jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!------------------------------------------- JS -->
+<script src="../js/quiz.js"></script>
   </body>
 </html>
+

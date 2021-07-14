@@ -1,7 +1,5 @@
 <?php
-include "php/reset.php";
-include "php/connexion.php";
-?>
+include "php/reset.php"; ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -13,12 +11,14 @@ include "php/connexion.php";
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="pin-main background-bleu">
+
+<!------------------------------------------- PIN / PSEUDO -->
+    <main class="form-main background-bleu">
       <header class="header">
         <h1>Grahoot!</h1>
       </header>
       <div class="form">
-        <section class="pin-section">
+        <section class="form-section">
           <input
             type="number"
             placeholder="Code PIN"
@@ -27,10 +27,13 @@ include "php/connexion.php";
           />
           <button class="pin-btn">Valider</button>
         </section>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="js/pin.js"></script>
-
       </div>
     </main>
+
+<!------------------------------------------- Jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!------------------------------------------- JS -->
+<script type="module" src="js/pin.js"></script>
   </body>
 </html>
