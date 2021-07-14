@@ -74,6 +74,3 @@ shuffle($reponses);
           </p>
         </section>
       </footer>
-
-      
-

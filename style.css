@@ -107,6 +107,12 @@ input[type="number"] {
   padding: 0.75rem 2rem;
   border-radius: 25px;
   border: none;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.form-section button:hover {
+  background: #3a51a1;
 }
 
 /*------------------------------------------- QUIZ */
@@ -306,7 +312,8 @@ footer {
 
 @media screen and (min-width: 768px) {
   .reponse-article {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    height: 10rem;
   }
 
   .tableau-scores-section {
